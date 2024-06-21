@@ -10,6 +10,14 @@ class UserModel {
         }
     }
 
+    static async addUser(user) {
+        try {
+            return await db('utilisateur').insert(user);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 }
 
 module.exports = UserModel;

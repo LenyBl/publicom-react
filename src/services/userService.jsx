@@ -13,3 +13,11 @@ export async function getAllUsers() {
     }
 }
 
+export async function addUser(user) {
+    try {
+        await axios.post(API_URL + 'add-user', user);
+    } catch (error) {
+        throw new Error('Error adding user');
+    }
+}
+
