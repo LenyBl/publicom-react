@@ -1,4 +1,5 @@
 const db = require('../db');
+const bcrypt = require('bcrypt');
 
 class UserModel {
 
@@ -12,6 +13,8 @@ class UserModel {
 
     static async addUser(user) {
         try {
+            const hash = await bcrypt.hash(user.MOTDEPASSEUTILISATEUR, 10);
+            user.MOTDEPASSEUTILISATEUR = hash;
             return await db('utilisateur').insert(user);
         } catch (error) {
             console.error(error);

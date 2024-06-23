@@ -16,7 +16,7 @@ router.get('/users', async (req, res) => {
 router.post('/add-user', async (req, res) => {
         try {
             await userModel.addUser(req.body);
-            res.status(201).send('User added');
+            res.status(201)
         } catch (error) {
             console.error(error);
         }

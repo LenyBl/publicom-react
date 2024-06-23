@@ -7,7 +7,6 @@ export default function AddUser() {
 
     const API_URL = 'http://localhost:3001/api/';
 
-    const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
@@ -15,11 +14,14 @@ export default function AddUser() {
     const addUserSubmit = async (event) => {
         event.preventDefault();
 
+
+        let username = firstName + '.' + lastName;
+
         const newUser = {
-            username: firstName + '.' + lastName,
-            firstName,
-            lastName,
-            password: password
+            IDENTIFIANTUTILISATEUR: username.toLowerCase(),
+            PRENOMUTILISATEUR: firstName,
+            NOMUTILISATEUR: lastName,
+            MOTDEPASSEUTILISATEUR: password
         };
 
         try {
