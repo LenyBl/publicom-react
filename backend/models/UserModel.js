@@ -3,6 +3,14 @@ const bcrypt = require('bcrypt');
 
 class UserModel {
 
+    static async getUserByUsername(username) {
+        try {
+            return await db('utilisateur').where('IDENTIFIANTUTILISATEUR', username).first();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     static async getAllUsers() {
         try {
             return await db('utilisateur').select('*');

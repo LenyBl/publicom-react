@@ -1,10 +1,7 @@
-import React, {useState} from "react";
+import {useEffect, useState} from "react";
 import logo_publicom from "../img/logo_publicom.png";
 
 export default function AddUser() {
-
-    document.body.style.backgroundColor = "#1F2937";
-
     const API_URL = 'http://localhost:3001/api/';
 
     const [firstName, setFirstName] = useState('');
@@ -13,7 +10,6 @@ export default function AddUser() {
 
     const addUserSubmit = async (event) => {
         event.preventDefault();
-
 
         let username = firstName + '.' + lastName;
 
@@ -26,20 +22,22 @@ export default function AddUser() {
 
         try {
             const response = await fetch(API_URL + 'add-user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(newUser)
-                });
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            });
+
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
             const data = await response.json();
-            console.log('User added successfully:', data);
-            // Optionally reset the form here
+            console.log("User added successfully", data);
+
+
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
